@@ -39,11 +39,11 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="mentors"
+        name="coaches-and-consultants"
         options={{
           title: 'מאמנות',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="people-outline" size={size} color={color} />
+          tabBarIcon: ({ color, size}) => (
+            <Ionicons name="star-outline" size={size} color={color} />
           ),
         }}
       />
@@ -57,11 +57,11 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="courses"
+        name="courses-and-events"
         options={{
-          title: 'קורסים',
+          title: 'פעילויות',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book-outline" size={size} color={color} />
+            <Ionicons name="calendar-outline" size={size} color={color} />
           ),
         }}
       />

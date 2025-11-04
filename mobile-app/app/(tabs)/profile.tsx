@@ -51,8 +51,8 @@ export default function ProfileScreen() {
       icon: 'target-outline',
       title: 'המטרות שלי',
       subtitle: 'עקבי אחר ההתקדמות שלך',
-      onPress: () => router.push('/my-goals' as any),
-      route: '/my-goals',
+      onPress: () => router.push('/personal-goals' as any),
+      route: '/personal-goals',
     },
     {
       icon: 'book-outline',
