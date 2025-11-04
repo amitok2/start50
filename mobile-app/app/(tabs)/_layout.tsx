@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
+import { Platform } from 'react-native';
 
 export default function TabsLayout() {
   return (
@@ -13,7 +14,7 @@ export default function TabsLayout() {
         headerTintColor: theme.colors.foreground,
         headerTitleStyle: {
           fontWeight: theme.fontWeight.bold,
-          fontFamily: 'Heebo-Bold',
+          ...(Platform.OS !== 'web' && { fontFamily: 'Heebo-Bold' }),
         },
         tabBarStyle: {
           backgroundColor: theme.colors.background,
@@ -23,7 +24,7 @@ export default function TabsLayout() {
         tabBarActiveTintColor: theme.colors.rose[500],
         tabBarInactiveTintColor: theme.colors.gray[500],
         tabBarLabelStyle: {
-          fontFamily: 'Heebo-Medium',
+          ...(Platform.OS !== 'web' && { fontFamily: 'Heebo-Medium' }),
           fontSize: 12,
         },
       }}
