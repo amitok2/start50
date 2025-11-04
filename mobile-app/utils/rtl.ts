@@ -1,4 +1,4 @@
-import { I18nManager } from 'react-native';
+import { I18nManager, ViewStyle, TextStyle } from 'react-native';
 
 /**
  * RTL (Right-to-Left) utilities for Hebrew text support
@@ -36,5 +36,27 @@ export const getPosition = (position: 'left' | 'right') => {
  */
 export const transformRTL = (value: number) => {
   return isRTL ? -value : value;
+};
+
+/**
+ * Common RTL text style - use this for all Hebrew text
+ */
+export const rtlText: TextStyle = {
+  textAlign: 'right',
+  writingDirection: 'rtl',
+};
+
+/**
+ * Common RTL view style for containers with text
+ */
+export const rtlView: ViewStyle = {
+  alignItems: 'flex-end',
+};
+
+/**
+ * RTL row style - reverses flex direction for rows
+ */
+export const rtlRow: ViewStyle = {
+  flexDirection: 'row-reverse',
 };
 

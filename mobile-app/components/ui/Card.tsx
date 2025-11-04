@@ -87,24 +87,29 @@ const styles = StyleSheet.create({
   header: {
     padding: theme.spacing['2xl'],
     gap: theme.spacing.sm,
+    alignItems: 'flex-end', // RTL alignment
   },
   title: {
     fontSize: theme.fontSize.xl,
     fontWeight: theme.fontWeight.semibold,
     color: theme.colors.cardForeground,
     lineHeight: theme.fontSize.xl * 1.2,
+    textAlign: 'right', // RTL text alignment
+    writingDirection: 'rtl',
   },
   description: {
     fontSize: theme.fontSize.sm,
     color: theme.colors.mutedForeground,
     lineHeight: theme.fontSize.sm * 1.5,
+    textAlign: 'right', // RTL text alignment
+    writingDirection: 'rtl',
   },
   content: {
     padding: theme.spacing['2xl'],
     paddingTop: 0,
   },
   footer: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse', // RTL flex direction
     alignItems: 'center',
     padding: theme.spacing['2xl'],
     paddingTop: 0,
