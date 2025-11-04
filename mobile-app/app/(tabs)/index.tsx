@@ -1,8 +1,18 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import ServicesHighlight from '@/components/home/ServicesHighlight';
+import { Card, CardContent } from '@/components/ui/Card';
+import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
+
+const quickLinks = [
+  { title: 'יזמות', route: '/entrepreneurship-hub', icon: 'rocket', color: theme.colors.orange[500] },
+  { title: 'משאבים', route: '/resource-library', icon: 'library', color: theme.colors.purple[500] },
+  { title: 'מאמרים', route: '/articles', icon: 'newspaper', color: theme.colors.rose[500] },
+  { title: 'הפגישות שלי', route: '/my-bookings', icon: 'calendar', color: theme.colors.pink[500] },
+];
 
 export default function HomeScreen() {
   return (
@@ -23,10 +33,29 @@ export default function HomeScreen() {
         </View>
       </LinearGradient>
 
+      {/* Quick Links */}
+      <View style={styles.quickLinksContainer}>
+        <Text style={styles.sectionTitle}>קיצורי דרך</Text>
+        <View style={styles.quickLinksGrid}>
+          {quickLinks.map((link) => (
+            <TouchableOpacity
+              key={link.route}
+              onPress={() => router.push(link.route as any)}
+              style={styles.quickLink}
+            >
+              <View style={[styles.quickLinkIcon, { backgroundColor: `${link.color}20` }]}>
+                <Ionicons name={link.icon as any} size={24} color={link.color} />
+              </View>
+              <Text style={styles.quickLinkText}>{link.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+
       {/* Services Highlight */}
       <ServicesHighlight />
 
-      {/* Additional sections can be added here */}
+      {/* Footer CTA */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
           הצטרפי לאלפי נשים שכבר מממשות את עצמן
@@ -69,6 +98,44 @@ const styles = StyleSheet.create({
     color: theme.colors.gray[600],
     textAlign: 'center',
     lineHeight: theme.fontSize.lg * 1.6,
+  },
+  quickLinksContainer: {
+    paddingHorizontal: theme.spacing.lg,
+    marginBottom: theme.spacing.xl,
+  },
+  sectionTitle: {
+    fontSize: theme.fontSize.xl,
+    fontWeight: theme.fontWeight.bold,
+    color: theme.colors.gray[900],
+    marginBottom: theme.spacing.lg,
+    textAlign: 'right',
+  },
+  quickLinksGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: theme.spacing.md,
+  },
+  quickLink: {
+    width: '47%',
+    backgroundColor: theme.colors.card,
+    borderRadius: theme.borderRadius.xl,
+    padding: theme.spacing.lg,
+    alignItems: 'center',
+    ...theme.shadows.md,
+  },
+  quickLinkIcon: {
+    width: 56,
+    height: 56,
+    borderRadius: theme.borderRadius.xl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: theme.spacing.md,
+  },
+  quickLinkText: {
+    fontSize: theme.fontSize.sm,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.gray[700],
+    textAlign: 'center',
   },
   footer: {
     paddingVertical: theme.spacing['4xl'],
