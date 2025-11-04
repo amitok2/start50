@@ -23,7 +23,7 @@ export default function HomeScreen() {
         style={styles.hero}
       >
         <View style={styles.heroContent}>
-          <Text style={styles.heroTitle}>ברוכה הבאה ל-Base44</Text>
+          <Text style={styles.heroTitle}>🌸 ברוכה הבאה לקהילת ReStart 50+</Text>
           <Text style={styles.heroSubtitle}>
             המקום שלך להתחיל מחדש בגיל 50+
           </Text>

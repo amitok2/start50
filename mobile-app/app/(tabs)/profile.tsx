@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import { Avatar } from '@/components/ui/Avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -23,36 +24,49 @@ export default function ProfileScreen() {
       title: 'עריכת פרופיל',
       subtitle: 'עדכני את הפרטים האישיים שלך',
       onPress: () => console.log('Edit profile'),
+      route: null,
     },
     {
       icon: 'briefcase-outline',
       title: 'הקריירה שלי',
       subtitle: 'נהלי את המסלול המקצועי שלך',
       onPress: () => console.log('Career'),
+      route: null,
     },
     {
       icon: 'calendar-outline',
       title: 'הפגישות שלי',
       subtitle: 'צפי בפגישות מתוזמנות',
-      onPress: () => console.log('Bookings'),
+      onPress: () => router.push('/my-bookings' as any),
+      route: '/my-bookings',
     },
     {
       icon: 'ribbon-outline',
       title: 'התגים שלי',
       subtitle: 'הישגים והצלחות',
-      onPress: () => console.log('Badges'),
+      onPress: () => router.push('/my-badges' as any),
+      route: '/my-badges',
+    },
+    {
+      icon: 'target-outline',
+      title: 'המטרות שלי',
+      subtitle: 'עקבי אחר ההתקדמות שלך',
+      onPress: () => router.push('/my-goals' as any),
+      route: '/my-goals',
     },
     {
       icon: 'book-outline',
       title: 'הקורסים שלי',
       subtitle: 'הקורסים שנרשמת אליהם',
       onPress: () => console.log('Courses'),
+      route: null,
     },
     {
       icon: 'settings-outline',
       title: 'הגדרות',
       subtitle: 'העדפות ופרטיות',
       onPress: () => console.log('Settings'),
+      route: null,
     },
   ];
 
