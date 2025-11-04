@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, StyleSheet, TextInputProps } from 'react-native';
 import { theme } from '@/constants/theme';
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   // Additional custom props can be added here
 }
 

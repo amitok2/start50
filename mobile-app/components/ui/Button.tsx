@@ -14,7 +14,7 @@ import { theme } from '@/constants/theme';
 type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'gradient';
 type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
 
-interface ButtonProps extends TouchableOpacityProps {
+interface ButtonProps extends Omit<TouchableOpacityProps, 'children'> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;

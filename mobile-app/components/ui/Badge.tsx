@@ -4,7 +4,7 @@ import { theme } from '@/constants/theme';
 
 type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline';
 
-interface BadgeProps extends ViewProps {
+export interface BadgeProps extends Omit<ViewProps, 'children'> {
   variant?: BadgeVariant;
   children: React.ReactNode;
   style?: ViewStyle;
