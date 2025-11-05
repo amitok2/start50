@@ -51,7 +51,10 @@ export default function RootLayout() {
       >
         <Stack.Screen 
           name="(tabs)" 
-          options={{ headerShown: false }}
+          options={{ 
+            headerShown: false,
+            title: '' // Hide (tabs) label
+          }}
         />
         <Stack.Screen 
           name="entrepreneurship-hub" 
@@ -92,6 +95,26 @@ export default function RootLayout() {
         <Stack.Screen 
           name="ai-matchmaking" 
           options={{ title: 'התאמה חכמה AI' }}
+        />
+        <Stack.Screen 
+          name="business-startup-checklist" 
+          options={{ title: 'צ\'ק-ליסט הקמת עסק' }}
+        />
+        <Stack.Screen 
+          name="business-steps-planner" 
+          options={{ title: 'תכנון עסקי חכם' }}
+        />
+        <Stack.Screen 
+          name="budget-planner" 
+          options={{ title: 'מתכנן תקציב' }}
+        />
+        <Stack.Screen 
+          name="career-referrals" 
+          options={{ title: 'הקריירה שלי' }}
+        />
+        <Stack.Screen 
+          name="my-courses" 
+          options={{ title: 'הקורסים שלי' }}
         />
       </Stack>
     </RootWrapper>

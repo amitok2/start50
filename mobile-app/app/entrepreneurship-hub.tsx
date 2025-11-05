@@ -13,47 +13,31 @@ const entrepreneurshipTools = [
     description: 'כל השלבים לפתיחת עסק - מהרעיון ועד ההשקה',
     icon: 'checkmark-done',
     color: theme.colors.orange[500],
-    route: '/business-checklist',
-  },
-  {
-    id: 'pathfinder',
-    title: 'מבחן הנתיב',
-    description: 'גלי איזה סוג עסק מתאים לך',
-    icon: 'compass',
-    color: theme.colors.purple[500],
-    route: '/pathfinder',
+    route: '/business-startup-checklist',
   },
   {
     id: 'business-plan',
     title: 'תכנון עסקי חכם',
     description: 'בני את תכנית העסק שלך צעד אחר צעד',
     icon: 'document-text',
-    color: theme.colors.rose[500],
-    route: '/business-plan',
+    color: theme.colors.purple[500],
+    route: '/business-steps-planner',
   },
   {
     id: 'budget',
     title: 'מתכנן תקציב',
     description: 'נהלי את התקציב של העסק שלך',
     icon: 'calculator',
-    color: theme.colors.pink[500],
+    color: theme.colors.rose[500],
     route: '/budget-planner',
   },
   {
-    id: 'roi',
-    title: 'מחשבון החזר',
-    description: 'חשבי החזר השקעה (ROI) לעסק',
-    icon: 'trending-up',
-    color: theme.colors.orange[600],
-    route: '/roi-calculator',
-  },
-  {
-    id: 'marketing',
-    title: 'מדריך שיווק',
-    description: 'למדי איך לשווק את העסק שלך',
-    icon: 'megaphone',
-    color: theme.colors.purple[600],
-    route: '/marketing-guide',
+    id: 'resources',
+    title: 'ספריית משאבים',
+    description: 'מדריכים, תבניות וכלים דיגיטליים',
+    icon: 'library',
+    color: theme.colors.pink[500],
+    route: '/resource-library',
   },
 ];
 
@@ -85,10 +69,7 @@ export default function EntrepreneurshipHub() {
         {entrepreneurshipTools.map((tool) => (
           <TouchableOpacity
             key={tool.id}
-            onPress={() => {
-              // router.push(tool.route);
-              console.log('Navigate to:', tool.route);
-            }}
+            onPress={() => router.push(tool.route as any)}
             activeOpacity={0.7}
           >
             <Card style={styles.toolCard}>

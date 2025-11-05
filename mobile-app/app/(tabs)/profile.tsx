@@ -20,18 +20,11 @@ export default function ProfileScreen() {
 
   const menuItems = [
     {
-      icon: 'person-outline',
-      title: 'עריכת פרופיל',
-      subtitle: 'עדכני את הפרטים האישיים שלך',
-      onPress: () => console.log('Edit profile'),
-      route: null,
-    },
-    {
       icon: 'briefcase-outline',
       title: 'הקריירה שלי',
-      subtitle: 'נהלי את המסלול המקצועי שלך',
-      onPress: () => console.log('Career'),
-      route: null,
+      subtitle: 'כלים להצלחה מקצועית',
+      onPress: () => router.push('/career-referrals' as any),
+      route: '/career-referrals',
     },
     {
       icon: 'calendar-outline',
@@ -58,14 +51,14 @@ export default function ProfileScreen() {
       icon: 'book-outline',
       title: 'הקורסים שלי',
       subtitle: 'הקורסים שנרשמת אליהם',
-      onPress: () => console.log('Courses'),
-      route: null,
+      onPress: () => router.push('/my-courses' as any),
+      route: '/my-courses',
     },
     {
-      icon: 'settings-outline',
-      title: 'הגדרות',
-      subtitle: 'העדפות ופרטיות',
-      onPress: () => console.log('Settings'),
+      icon: 'person-outline',
+      title: 'עריכת פרופיל',
+      subtitle: 'עדכון פרטים אישיים',
+      onPress: () => console.log('Edit profile - coming soon'),
       route: null,
     },
   ];
