@@ -124,6 +124,10 @@ export default function RootLayout() {
           name="recommendation-letters" 
           options={{ title: 'מכתבי המלצה' }}
         />
+        <Stack.Screen 
+          name="community" 
+          options={{ title: 'הקהילה שלנו' }}
+        />
       </Stack>
     </RootWrapper>
   );
