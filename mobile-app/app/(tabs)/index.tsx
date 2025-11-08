@@ -8,10 +8,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
 
 const quickLinks = [
+  { title: 'הקריירה שלי', route: '/career-referrals', icon: 'briefcase', color: theme.colors.blue[500] },
+  { title: 'קהילה', route: '/community', icon: 'chatbubbles', color: theme.colors.rose[500] },
   { title: 'פעילויות וחוויות', route: '/courses-and-events', icon: 'calendar', color: theme.colors.purple[500] },
   { title: 'יזמות', route: '/entrepreneurship-hub', icon: 'rocket', color: theme.colors.orange[500] },
-  { title: 'מאמרים', route: '/articles', icon: 'newspaper', color: theme.colors.rose[500] },
-  { title: 'להכיר חברות', route: '/social-tinder', icon: 'people', color: theme.colors.pink[500] },
+  { title: 'מאמרים', route: '/articles', icon: 'newspaper', color: theme.colors.pink[500] },
+  { title: 'להכיר חברות', route: '/social-tinder', icon: 'people', color: theme.colors.teal[500] },
 ];
 
 export default function HomeScreen() {
