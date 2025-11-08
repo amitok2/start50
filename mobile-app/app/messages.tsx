@@ -59,7 +59,7 @@ const sampleMessages: Record<string, Message[]> = {
       id: '1',
       content: 'שלום! כיף להכיר אותך',
       senderEmail: 'sarah@example.com',
-      createdDate: new Date(2025, 0, 8, 14, 00),
+      createdDate: new Date(2025, 0, 8, 14, 0),
       isRead: true,
     },
     {
