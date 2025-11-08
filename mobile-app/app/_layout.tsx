@@ -116,6 +116,14 @@ export default function RootLayout() {
           name="my-courses" 
           options={{ title: 'הקורסים שלי' }}
         />
+        <Stack.Screen 
+          name="messages" 
+          options={{ title: 'הודעות' }}
+        />
+        <Stack.Screen 
+          name="recommendation-letters" 
+          options={{ title: 'מכתבי המלצה' }}
+        />
       </Stack>
     </RootWrapper>
   );
