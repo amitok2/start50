@@ -140,6 +140,10 @@ export default function RootLayout() {
           name="apply-for-membership" 
           options={{ title: 'הצטרפות לקהילה' }}
         />
+        <Stack.Screen 
+          name="edit-profile" 
+          options={{ title: 'עריכת פרופיל' }}
+        />
       </Stack>
     </RootWrapper>
   );

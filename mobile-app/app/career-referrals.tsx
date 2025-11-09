@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Linking, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -33,6 +33,7 @@ const quickActions = [
     description: 'העלי את קורות החיים שלך',
     icon: 'cloud-upload',
     color: theme.colors.green[500],
+    route: '/cv-linkedin-enhancer',
   },
   {
     id: 'job-search',
@@ -40,6 +41,7 @@ const quickActions = [
     description: 'מצאי את המשרה המושלמת',
     icon: 'search',
     color: theme.colors.orange[500],
+    externalUrl: 'https://www.jobmaster.co.il',
   },
 ];
 
@@ -96,7 +98,22 @@ export default function CareerReferralsScreen() {
               key={action.id}
               style={styles.quickActionCard}
               activeOpacity={0.7}
-              onPress={() => console.log(action.id)}
+              onPress={async () => {
+                if (action.route) {
+                  router.push(action.route as any);
+                } else if (action.externalUrl) {
+                  try {
+                    const supported = await Linking.canOpenURL(action.externalUrl);
+                    if (supported) {
+                      await Linking.openURL(action.externalUrl);
+                    } else {
+                      Alert.alert('שגיאה', 'לא ניתן לפתוח את הקישור');
+                    }
+                  } catch (error) {
+                    Alert.alert('שגיאה', 'אירעה שגיאה בפתיחת הקישור');
+                  }
+                }
+              }}
             >
               <View style={[styles.quickActionIcon, { backgroundColor: action.color }]}>
                 <Ionicons name={action.icon as any} size={28} color="white" />

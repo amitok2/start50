@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
-import { rtlView, rtlText } from '@/utils/rtl';
+import { rtlText } from '@/utils/rtl';
 
 interface Goal {
   id: string;
@@ -261,7 +261,7 @@ export default function PersonalGoalsScreen() {
               return (
                 <Card key={goal.id} style={styles.goalCard}>
                   <CardHeader>
-                    <View style={[styles.goalHeader, rtlView]}>
+                    <View style={styles.goalHeader}>
                       <View style={styles.goalTitleRow}>
                         <View
                           style={[
@@ -313,7 +313,7 @@ export default function PersonalGoalsScreen() {
 
                     {/* Progress Bar */}
                     <View style={styles.progressSection}>
-                      <View style={[styles.progressHeader, rtlView]}>
+                      <View style={styles.progressHeader}>
                         <Text style={[styles.progressLabel, rtlText]}>התקדמות</Text>
                         <Text style={styles.progressPercentage}>{goal.progress}%</Text>
                       </View>
@@ -352,7 +352,7 @@ export default function PersonalGoalsScreen() {
                     )}
 
                     {/* Actions */}
-                    <View style={[styles.goalActions, rtlView]}>
+                    <View style={styles.goalActions}>
                       {goal.target_date && (
                         <View style={styles.targetDate}>
                           <Ionicons
@@ -360,7 +360,7 @@ export default function PersonalGoalsScreen() {
                             size={16}
                             color={theme.colors.gray[600]}
                           />
-                          <Text style={styles.targetDateText}>
+                          <Text style={[styles.targetDateText, rtlText]}>
                             {new Date(goal.target_date).toLocaleDateString('he-IL')}
                           </Text>
                         </View>

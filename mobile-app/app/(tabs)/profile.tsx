@@ -58,8 +58,8 @@ export default function ProfileScreen() {
       icon: 'person-outline',
       title: 'עריכת פרופיל',
       subtitle: 'עדכון פרטים אישיים',
-      onPress: () => console.log('Edit profile - coming soon'),
-      route: null,
+      onPress: () => router.push('/edit-profile' as any),
+      route: '/edit-profile',
     },
   ];
 
