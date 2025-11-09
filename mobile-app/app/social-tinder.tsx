@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
+import { rtlText } from '@/utils/rtl';
 
 const { width } = Dimensions.get('window');
 
@@ -97,6 +99,34 @@ export default function SocialTinderScreen() {
           <Ionicons name="options-outline" size={20} color={theme.colors.rose[500]} />
           <Text style={styles.filterButtonText}>סינון</Text>
         </TouchableOpacity>
+      </View>
+
+      {/* Join CTA */}
+      <View style={styles.section}>
+        <Card style={styles.joinCard}>
+          <CardHeader>
+            <CardTitle style={[styles.joinTitle, rtlText]}>
+              <Ionicons name="sparkles" size={24} color={theme.colors.purple[700]} />
+              {' '}עדיין לא חברה בקהילה?
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Text style={[styles.joinDescription, rtlText]}>
+              הצטרפי לקהילת ReStart 50+ ותוכלי ליצור פרופיל, להכיר חברות חדשות וליהנות מכל השירותים!
+            </Text>
+            <Button
+              variant="gradient"
+              gradientColors={[theme.colors.purple[500], theme.colors.pink[600]]}
+              onPress={() => router.push('/apply-for-membership')}
+              style={styles.joinButton}
+            >
+              <View style={styles.joinButtonContent}>
+                <Ionicons name="arrow-forward" size={20} color="white" />
+                <Text style={styles.joinButtonText}>הגישי בקשה להצטרפות</Text>
+              </View>
+            </Button>
+          </CardContent>
+        </Card>
       </View>
 
       {/* Profile Card */}
@@ -403,6 +433,34 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: theme.spacing['2xl'],
+  },
+  joinCard: {
+    backgroundColor: theme.colors.purple[50],
+    borderColor: theme.colors.purple[200],
+    ...theme.shadows.lg,
+  },
+  joinTitle: {
+    color: theme.colors.purple[800],
+  },
+  joinDescription: {
+    fontSize: theme.fontSize.sm,
+    color: theme.colors.gray[700],
+    textAlign: 'center',
+    lineHeight: theme.fontSize.sm * 1.6,
+    marginBottom: theme.spacing.lg,
+  },
+  joinButton: {
+    ...theme.shadows.md,
+  },
+  joinButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+  },
+  joinButtonText: {
+    fontSize: theme.fontSize.base,
+    fontWeight: theme.fontWeight.semibold,
+    color: 'white',
   },
 });
 

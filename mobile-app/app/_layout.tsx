@@ -128,6 +128,18 @@ export default function RootLayout() {
           name="community" 
           options={{ title: 'הקהילה שלנו' }}
         />
+        <Stack.Screen 
+          name="mentor-profile" 
+          options={{ title: 'פרופיל מנטורית' }}
+        />
+        <Stack.Screen 
+          name="booking" 
+          options={{ title: 'קביעת פגישה' }}
+        />
+        <Stack.Screen 
+          name="apply-for-membership" 
+          options={{ title: 'הצטרפות לקהילה' }}
+        />
       </Stack>
     </RootWrapper>
   );
