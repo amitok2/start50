@@ -174,7 +174,7 @@ export default function RootLayout() {
           name="signup" 
           options={{ title: 'הרשמה', headerShown: false }}
         />
-        </Stack>
+      </Stack>
       </RootWrapper>
     </AuthProvider>
   );

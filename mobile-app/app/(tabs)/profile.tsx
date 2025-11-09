@@ -138,11 +138,11 @@ export default function ProfileScreen() {
             {isSubscribed ? (
               <Badge style={{ backgroundColor: theme.colors.green[100] }} textStyle={{ color: theme.colors.green[700] }}>
                 <Ionicons name="checkmark-circle" size={14} color={theme.colors.green[700]} />
-                {' '}מנוי פעיל
+                <Text style={{ color: theme.colors.green[700] }}> מנוי פעיל</Text>
               </Badge>
             ) : (
               <Badge style={{ backgroundColor: theme.colors.gray[100] }} textStyle={{ color: theme.colors.gray[700] }}>
-                מנוי לא פעיל
+                <Text style={{ color: theme.colors.gray[700] }}>מנוי לא פעיל</Text>
               </Badge>
             )}
           </View>
