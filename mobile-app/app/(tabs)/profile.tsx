@@ -1,21 +1,73 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { Avatar } from '@/components/ui/Avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Separator } from '@/components/ui/Separator';
+import { Badge } from '@/components/ui/Badge';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function ProfileScreen() {
-  // In a real app, this would come from auth context
-  const user = {
-    full_name: 'שרה כהן',
-    email: 'sarah@example.com',
-    image_url: null,
-    member_since: '2024',
+  const { currentUser, logout, isSubscribed } = useAuth();
+
+  // If not logged in, show login prompt
+  if (!currentUser) {
+    return (
+      <View style={styles.container}>
+        <LinearGradient
+          colors={[theme.colors.rose[500], theme.colors.pink[500]]}
+          style={styles.headerGradient}
+        >
+          <View style={styles.loginPrompt}>
+            <Ionicons name="person-circle-outline" size={100} color="white" />
+            <Text style={styles.loginPromptTitle}>ברוכה הבאה</Text>
+            <Text style={styles.loginPromptText}>התחברי כדי לגשת לפרופיל שלך</Text>
+            <Button
+              variant="outline"
+              onPress={() => router.push('/login')}
+              style={styles.loginButton}
+            >
+              <Text style={styles.loginButtonText}>התחברי</Text>
+            </Button>
+            <TouchableOpacity onPress={() => router.push('/signup')}>
+              <Text style={styles.signupText}>
+                עדיין לא רשומה? <Text style={styles.signupLink}>הרשמי עכשיו</Text>
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
+      </View>
+    );
+  }
+
+  const handleLogout = () => {
+    Alert.alert(
+      'התנתקות',
+      'האם את בטוחה שברצונך להתנתק?',
+      [
+        { text: 'ביטול', style: 'cancel' },
+        {
+          text: 'התנתק',
+          style: 'destructive',
+          onPress: async () => {
+            await logout();
+            Alert.alert('התנתקת בהצלחה', 'להתראות!');
+          },
+        },
+      ]
+    );
+  };
+
+  const getMemberSince = () => {
+    if (currentUser.created_date) {
+      const date = new Date(currentUser.created_date);
+      return date.getFullYear().toString();
+    }
+    return '2024';
   };
 
   const menuItems = [
@@ -72,15 +124,27 @@ export default function ProfileScreen() {
       >
         <View style={styles.profileHeader}>
           <Avatar
-            source={user.image_url ? { uri: user.image_url } : undefined}
+            source={currentUser.image_url ? { uri: currentUser.image_url } : undefined}
             size={100}
-            fallback={user.full_name.charAt(0)}
+            fallback={currentUser.full_name.charAt(0)}
             style={styles.avatar}
           />
-          <Text style={styles.name}>{user.full_name}</Text>
-          <Text style={styles.email}>{user.email}</Text>
-          <View style={styles.memberBadge}>
-            <Text style={styles.memberText}>חברה מאז {user.member_since}</Text>
+          <Text style={styles.name}>{currentUser.full_name}</Text>
+          <Text style={styles.email}>{currentUser.email}</Text>
+          <View style={styles.badgesRow}>
+            <View style={styles.memberBadge}>
+              <Text style={styles.memberText}>חברה מאז {getMemberSince()}</Text>
+            </View>
+            {isSubscribed ? (
+              <Badge style={{ backgroundColor: theme.colors.green[100] }} textStyle={{ color: theme.colors.green[700] }}>
+                <Ionicons name="checkmark-circle" size={14} color={theme.colors.green[700]} />
+                {' '}מנוי פעיל
+              </Badge>
+            ) : (
+              <Badge style={{ backgroundColor: theme.colors.gray[100] }} textStyle={{ color: theme.colors.gray[700] }}>
+                מנוי לא פעיל
+              </Badge>
+            )}
           </View>
         </View>
       </LinearGradient>
@@ -142,7 +206,7 @@ export default function ProfileScreen() {
       <Button
         variant="outline"
         style={styles.logoutButton}
-        onPress={() => console.log('Logout')}
+        onPress={handleLogout}
       >
         <Ionicons name="log-out-outline" size={20} color={theme.colors.destructive} />
         <Text style={styles.logoutText}>התנתקי</Text>
@@ -184,17 +248,59 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing.xs,
     textAlign: 'center',
   },
+  badgesRow: {
+    flexDirection: 'row',
+    gap: theme.spacing.sm,
+    marginTop: theme.spacing.md,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
   memberBadge: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     paddingHorizontal: theme.spacing.lg,
     paddingVertical: theme.spacing.sm,
     borderRadius: theme.borderRadius.full,
-    marginTop: theme.spacing.lg,
   },
   memberText: {
     fontSize: theme.fontSize.sm,
     color: 'white',
     fontWeight: theme.fontWeight.medium,
+  },
+  loginPrompt: {
+    alignItems: 'center',
+    paddingVertical: theme.spacing['6xl'],
+  },
+  loginPromptTitle: {
+    fontSize: theme.fontSize['3xl'],
+    fontWeight: theme.fontWeight.bold,
+    color: 'white',
+    marginTop: theme.spacing.lg,
+    marginBottom: theme.spacing.sm,
+  },
+  loginPromptText: {
+    fontSize: theme.fontSize.lg,
+    color: 'white',
+    opacity: 0.9,
+    marginBottom: theme.spacing.xl,
+    textAlign: 'center',
+  },
+  loginButton: {
+    borderColor: 'white',
+    borderWidth: 2,
+    marginBottom: theme.spacing.md,
+  },
+  loginButtonText: {
+    color: 'white',
+    fontSize: theme.fontSize.lg,
+    fontWeight: theme.fontWeight.semibold,
+  },
+  signupText: {
+    color: 'white',
+    fontSize: theme.fontSize.base,
+  },
+  signupLink: {
+    fontWeight: theme.fontWeight.bold,
+    textDecorationLine: 'underline',
   },
   statsCard: {
     marginHorizontal: theme.spacing.lg,

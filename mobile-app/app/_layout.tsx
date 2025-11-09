@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { I18nManager, Platform, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as SplashScreen from 'expo-splash-screen';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 // Prevent splash screen from auto-hiding (skip on web)
 if (Platform.OS !== 'web') {
@@ -33,8 +34,9 @@ export default function RootLayout() {
   const RootWrapper = Platform.OS === 'web' ? View : GestureHandlerRootView;
 
   return (
-    <RootWrapper style={{ flex: 1 }}>
-      <Stack
+    <AuthProvider>
+      <RootWrapper style={{ flex: 1 }}>
+        <Stack
         screenOptions={{
           headerShown: true,
           headerStyle: {
@@ -164,8 +166,17 @@ export default function RootLayout() {
           name="approve-booking" 
           options={{ title: 'אישור פגישה' }}
         />
-      </Stack>
-    </RootWrapper>
+        <Stack.Screen 
+          name="login" 
+          options={{ title: 'התחברות', headerShown: false }}
+        />
+        <Stack.Screen 
+          name="signup" 
+          options={{ title: 'הרשמה', headerShown: false }}
+        />
+        </Stack>
+      </RootWrapper>
+    </AuthProvider>
   );
 }
 
