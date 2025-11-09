@@ -15,6 +15,8 @@ export default function BookingScreen() {
   const mentorId = params.mentorId as string;
   const mentorName = params.mentorName as string;
   const mentorEmail = params.mentorEmail as string;
+  const isReschedule = params.reschedule === 'true';
+  const bookingId = params.bookingId as string;
 
   const [formData, setFormData] = useState({
     user_name: '',
@@ -49,8 +51,10 @@ export default function BookingScreen() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       Alert.alert(
-        'הבקשה נשלחה בהצלחה! 🎉',
-        `הבקשה שלך לפגישה עם ${mentorName} נשלחה בהצלחה. המנטורית תחזור אלייך בהקדם.`,
+        isReschedule ? 'הבקשה לשינוי נשלחה! 🎉' : 'הבקשה נשלחה בהצלחה! 🎉',
+        isReschedule 
+          ? `הבקשה לשינוי הפגישה עם ${mentorName} נשלחה בהצלחה. המנטורית תחזור אלייך בהקדם.`
+          : `הבקשה שלך לפגישה עם ${mentorName} נשלחה בהצלחה. המנטורית תחזור אלייך בהקדם.`,
         [
           {
             text: 'אישור',
@@ -73,7 +77,9 @@ export default function BookingScreen() {
         style={styles.hero}
       >
         <Ionicons name="calendar" size={64} color="white" />
-        <Text style={[styles.heroTitle, rtlText]}>קביעת פגישת היכרות</Text>
+        <Text style={[styles.heroTitle, rtlText]}>
+          {isReschedule ? 'שינוי מועד פגישה' : 'קביעת פגישת היכרות'}
+        </Text>
         <Text style={[styles.heroSubtitle, rtlText]}>עם {mentorName}</Text>
       </LinearGradient>
 
@@ -167,21 +173,21 @@ export default function BookingScreen() {
 
       {/* Submit Button */}
       <View style={styles.section}>
-        <Button
-          variant="gradient"
-          gradientColors={[theme.colors.purple[500], theme.colors.pink[600]]}
-          onPress={handleSubmit}
-          loading={isSubmitting}
-          disabled={!formData.user_name.trim() || !formData.user_phone.trim()}
-          style={styles.submitButton}
-        >
-          <View style={styles.buttonContent}>
-            <Ionicons name="send" size={20} color="white" />
-            <Text style={styles.buttonText}>
-              {isSubmitting ? 'שולח...' : 'שלח בקשה לפגישה'}
-            </Text>
-          </View>
-        </Button>
+            <Button
+              variant="gradient"
+              gradientColors={[theme.colors.purple[500], theme.colors.pink[600]]}
+              onPress={handleSubmit}
+              loading={isSubmitting}
+              disabled={!formData.user_name.trim() || !formData.user_phone.trim()}
+              style={styles.submitButton}
+            >
+              <View style={styles.buttonContent}>
+                <Ionicons name="send" size={20} color="white" />
+                <Text style={styles.buttonText}>
+                  {isSubmitting ? 'שולח...' : isReschedule ? 'שלח בקשה לשינוי' : 'שלח בקשה לפגישה'}
+                </Text>
+              </View>
+            </Button>
       </View>
 
       {/* Benefits */}
