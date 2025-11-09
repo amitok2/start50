@@ -144,6 +144,26 @@ export default function RootLayout() {
           name="edit-profile" 
           options={{ title: 'עריכת פרופיל' }}
         />
+        <Stack.Screen 
+          name="write-article" 
+          options={{ title: 'כתיבת מאמר' }}
+        />
+        <Stack.Screen 
+          name="mentor-dashboard" 
+          options={{ title: 'לוח הבקרה שלי' }}
+        />
+        <Stack.Screen 
+          name="manage-my-bookings" 
+          options={{ title: 'ניהול הפגישות שלי' }}
+        />
+        <Stack.Screen 
+          name="edit-mentor-profile" 
+          options={{ title: 'עריכת פרופיל מנטורית' }}
+        />
+        <Stack.Screen 
+          name="approve-booking" 
+          options={{ title: 'אישור פגישה' }}
+        />
       </Stack>
     </RootWrapper>
   );
